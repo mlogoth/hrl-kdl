@@ -307,6 +307,24 @@ class KDLKinematics(object):
             j_kdl.changeRefPoint(pos_kdl)
         return self.kdl_to_mat(j_kdl)
 
+    
+    ##
+    # Return numpy vector of Joint Acceleration using the dynamics of the body
+    # @param q,qdot,tau,fext
+    # @return N np.array of joint accelerations
+    #TODO
+    def joint_accelerations(self,q,qdot,tau,fext):
+        inputs = [q,qdot,tau,fext]
+        if (type(q)!=kdl.JntArray):
+            q = self.joint_list_to_kdl(q)
+        if (type(qdot)!=kdl.JntArray):
+            qdot = self.joint_list_to_kdl(qdot)            
+        if (type(fext)!=kdl.JntArray):
+            fext = self.joint_list_to_kdl(fext)
+        if (type(tau)!=kdl.JntArray):
+            tau = self.joint_list_to_kdl(tau)
+        
+        return None
     ##
     # Returns the joint space mass matrix at the end_link for the given joint angles.
     # @param q List of joint angles.
